@@ -1,0 +1,17 @@
+includes:
+- config/base_boxer2d_detection.yaml
+
+scheduler:
+  type: multi_step
+  params:
+    use_warmup: true
+    mode: iter
+    lr_ratio: 0.1
+    lr_steps:
+    - 210000
+    - 250000
+    warmup_iterations: 1000
+    warmup_factor: 0.001
+
+training:
+  max_update: 270000

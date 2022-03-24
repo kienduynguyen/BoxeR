@@ -1,0 +1,15 @@
+includes:
+- config/base_boxer3d_detection.yaml
+
+scheduler:
+  type: cosine_annealing
+  params:
+    T_max: 140000
+    eta_min: 5.0e-6
+    use_warmup: true
+    warmup_factor: 0.001
+    warmup_iterations: 5000
+
+training:
+  run_type: train_test
+  max_update: 140000

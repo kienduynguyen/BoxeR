@@ -1,0 +1,71 @@
+includes:
+- config/base_boxer2d_detection.yaml
+
+dataset_config:
+  detection:
+    use_mask: true
+    processors:
+      image_train_processor:
+        type: compose
+        params:
+          preprocessors:
+          - type: resize_scale
+            params:
+              min_scale: 0.4
+              max_scale: 2.0
+              image_size: 1024
+          - type: random_size_crop_v2
+            params:
+              image_size: 1024
+          - type: random_horizontal_flip
+            params:
+              prob: 0.5
+          - type: to_tensor
+            params: {}
+          - type: normalize
+            params:
+              mean:
+              - 0.485
+              - 0.456
+              - 0.406
+              std:
+              - 0.229
+              - 0.224
+              - 0.225
+
+model_config:
+  boxer2d:
+    use_mask: true
+    loss:
+      params:
+        dice_loss_coef: 5
+        mask_loss_coef: 5
+        use_mask: ${model_config.boxer2d.use_mask}
+    backbone:
+      type: resnet101
+
+scheduler:
+  type: multi_step
+  params:
+    use_warmup: true
+    mode: iter
+    lr_ratio: 0.1
+    lr_steps:
+    - 327778
+    - 355092
+    warmup_iterations: 10
+    warmup_factor: 1.0
+
+optimizer:
+  type: adamw
+  params:
+    lr: 0.0002
+    lr_backbone: 2.0e-05
+    weight_decay: 0.05
+
+training:
+  max_update: 368750
+  max_norm: 0.01
+  iou_type:
+  - bbox
+  - segm

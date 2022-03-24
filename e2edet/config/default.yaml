@@ -1,0 +1,121 @@
+# Configuration for training
+training:
+    # Name of the trainer class used to define the training/evalution loop
+    trainer: 'base_trainer'
+    max_norm: 0
+    # Seed to be used for training. -1 means random seed between 1 and 100000.
+    # Either pass fixed through your config or command line arguments
+    # Pass null to the seed if you don't want it seeded anyhow and
+    # want to leave it to default
+    seed: -1
+    # Maximum number of iterations the training will run
+    max_update: null
+    # Maximum epochs in case you don't want to use max_updates
+    # Can be mixed with max iterations, so it will stop whichever is
+    # completed first. Default: null means epochs won't be used
+    max_epoch: null
+    iter_per_update: 1
+    use_fp16: none
+
+    # Type of run, train+inference by default means both training and inference
+    # (test) stage will be run, if run_type contains 'val',
+    # inference will be run on val set also.
+    run_type: train_val_test
+    num_checkpoint: 1
+
+    # Directory for saving checkpoints and other metadata
+    save_dir: "./save"
+
+    # After `log_interval` iterations, current iteration's training loss and
+    # metrics will be reported. This will also report validation
+    # loss and metrics on a single batch from validation set
+    # to provide an estimate on validation side
+    log_interval: 100
+    # Level of logging, only logs which are >= to current level will be logged
+    logger_level: info
+    # Log format: json, simple
+    log_format: simple
+    # Whether to log detailed final configuration parameters
+    log_detailed_config: true
+    # Whether MMF should log or not, Default: False, which means
+    # mmf will log by default
+    should_not_log: false
+
+    # Tensorboard control, by default tensorboard is disabled
+    tensorboard: false
+    # Log directory for tensorboard, default points to same as logs
+    tensorboard_logdir: null
+
+    # Size of each batch. If distributed or data_parallel
+    # is used, this will be divided equally among GPUs
+    batch_size: 512
+    # Number of workers to be used in dataloaders
+    num_workers: 2
+    # Whether to pin memory in dataloader
+    pin_memory: true
+
+    # After `checkpoint_interval` iterations, MMF will make a snapshot
+    # which will involve creating a checkpoint for current training scenarios
+    checkpoint_interval: 1000
+    # This will evaluate validation metrics on whole validation set after evaluation interval
+    evaluation_interval: 1000
+
+    # Local rank of the GPU device
+    device: cuda
+    local_rank: null
+
+    # If resume is true, MMF will try to load automatically load
+    # last of same parameters from save_dir
+    resume: false
+    # `resume_file` can be used to load a specific checkpoint from a file
+    resume_file: null
+
+    # If verbose dump is active, MMF will dump dataset, model specific
+    # information which can be useful in debugging
+    verbose_dump: false
+
+    # Turn on if you want to ignore unused parameters in case of DDP
+    find_unused_parameters: false
+
+
+# Configuration for models, default configuration files for various models
+# included in MMF can be found under configs directory in root folder
+model_config: {}
+
+# Configuration for datasets. Separate configuration
+# for different datasets included in MMF are included in dataset folder
+# which can be mixed and matched to train multiple datasets together
+# An example for mixing all vqa datasets is present under vqa folder
+dataset_config: {}
+
+# Defines which datasets from the above tasks you want to train on
+task: null
+
+# Defines which model you want to train on
+model: null
+
+# Config file to be optionally passed by the user
+config: null
+
+# Configuration for optimizer, examples can be found in models' configs in
+# configs folder
+optimizer: {}
+
+# Configuration for scheduler, examples can be found in models' configs
+scheduler: {}
+
+# Configuration for the distributed setup
+distributed:
+    # Typically tcp://hostname:port that will be used to establish initial connection
+    init_method: null
+    # Rank of the current worker
+    rank: 0
+    # Port number, not required if using init_method,
+    port: -1
+    # Backend for distributed setup
+    backend: nccl
+    # Total number of GPUs across all nodes (default: all visible GPUs)
+    world_size: ${device_count:}
+    # Set if you do not want spawn multiple processes even if
+    # multiple GPUs are visible
+    no_spawn: false

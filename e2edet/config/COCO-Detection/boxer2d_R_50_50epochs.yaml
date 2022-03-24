@@ -1,0 +1,14 @@
+includes:
+- config/base_boxer2d_detection.yaml
+
+scheduler:
+  type: step
+  params:
+    use_warmup: false
+    mode: epoch
+    lr_ratio: 0.1
+    step_size: 40
+
+training:
+  batch_size: 32
+  max_epoch: 50

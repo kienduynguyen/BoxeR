@@ -1,0 +1,30 @@
+includes:
+- config/base_boxer2d_detection.yaml
+
+dataset_config:
+  detection:
+    use_mask: true
+
+model_config:
+  boxer2d:
+    use_mask: true
+    loss:
+      params:
+        dice_loss_coef: 5
+        mask_loss_coef: 5
+        use_mask: ${model_config.boxer2d.use_mask}
+
+scheduler:
+  type: step
+  params:
+    use_warmup: false
+    mode: epoch
+    lr_ratio: 0.1
+    step_size: 40
+
+training:
+  batch_size: 32
+  max_epoch: 50
+  iou_type:
+  - bbox
+  - segm

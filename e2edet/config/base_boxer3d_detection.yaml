@@ -1,0 +1,182 @@
+dataset_config:
+  detection3d:
+    nsweeps: 1
+    normalize_angle: sigmoid
+    cache_mode: false
+    imdb_files:
+      train:
+        root_path: waymo/lidars
+        info_path: waymo/infos/infos_train_01sweeps_filter_zero_gt.pkl
+        load_interval: 20
+        db_sampler:
+          db_info_path: waymo/infos/dbinfos_train_1sweeps_withvelo.pkl
+          groups:
+            - VEHICLE: 15
+            - PEDESTRIAN: 10
+          min_points: 0
+          difficulty: -1
+          rate: 1.0
+      val:
+        root_path: waymo/lidars
+        info_path: waymo/infos/infos_val_01sweeps_filter_zero_gt.pkl
+        load_interval: 5
+      test:
+        root_path: waymo/lidars
+        info_path: waymo/infos/infos_val_01sweeps_filter_zero_gt.pkl
+        load_interval: 5
+    pc_range:
+    - -75.0
+    - -75.0
+    - -3.0
+    - 75.0
+    - 75.0
+    - 5.0
+    voxel_size:
+    - 0.32
+    - 0.32
+    - 12.0
+    min_points: 0
+    classes:
+    - VEHICLE
+    - PEDESTRIAN
+    processors:
+      train_processor:
+        type: compose
+        params:
+          preprocessors:
+          - type: random_flip
+            params: {}
+          - type: global_rotate
+            params:
+              rotation: 0.78539816
+          - type: global_scale
+            params:
+              min_scale: 0.95
+              max_scale: 1.05
+          - type: filter_by_range
+            params:
+              pc_range: ${dataset_config.detection3d.pc_range}
+          - type: shuffle_points
+            params: {}
+          - type: voxelize
+            params:
+              voxel_size: ${dataset_config.detection3d.voxel_size}
+              pc_range: ${dataset_config.detection3d.pc_range}
+              max_points_per_voxel: 20
+              max_voxel_num: 32000
+          - type: normalize3d
+            params:
+              pc_range: ${dataset_config.detection3d.pc_range}
+              normalize_angle: ${dataset_config.detection3d.normalize_angle}
+          - type: np_to_tensor
+            params: {}
+      test_processor:
+        type: compose
+        params:
+          preprocessors:
+          - type: filter_by_range
+            params:
+              pc_range: ${dataset_config.detection3d.pc_range}
+          - type: voxelize
+            params:
+              voxel_size: ${dataset_config.detection3d.voxel_size}
+              pc_range: ${dataset_config.detection3d.pc_range}
+              max_points_per_voxel: 20
+              max_voxel_num: 60000
+          - type: normalize3d
+            params:
+              pc_range: ${dataset_config.detection3d.pc_range}
+              normalize_angle: ${dataset_config.detection3d.normalize_angle}
+          - type: np_to_tensor
+            params: {}
+
+model_config:
+  boxer3d:
+    hidden_dim: 256
+    aux_loss: true
+    deform_lr_multi: 0.1
+    ref_size: 4
+    loss:
+      type: boxer3d
+      params:
+        bbox_loss_coef: 5
+        giou_loss_coef: 2
+        class_loss_coef: 2
+        rad_loss_coef: 4
+        matcher:
+          type: hungarian3d
+          params:
+            class_weight: ${model_config.boxer3d.loss.params.class_loss_coef}
+            bbox_weight: ${model_config.boxer3d.loss.params.bbox_loss_coef}
+            giou_weight: ${model_config.boxer3d.loss.params.giou_loss_coef}
+            rad_weight: ${model_config.boxer3d.loss.params.rad_loss_coef}
+    metric:
+    - type: accuracy
+      params: {}
+    backbone:
+      type: pointpillar
+      params:
+        hidden_dim: ${model_config.boxer3d.hidden_dim}
+        position_encoding: fixed
+        ref_size: ${model_config.boxer3d.ref_size}
+        reader:
+          num_input_features: 5
+          num_filters:
+          - 64
+          - 128
+          with_distance: false
+          voxel_size: ${dataset_config.detection3d.voxel_size}
+          pc_range: ${dataset_config.detection3d.pc_range}
+        extractor:
+          num_input_features: 128
+        neck:
+          num_input_features: 128
+          num_layers:
+          - 2
+          - 4
+          - 2
+          ds_strides:
+          - 1
+          - 2
+          - 2
+          ds_filters:
+          - 128
+          - 256
+          - 512
+        return_layers: 2
+    transformer:
+      type: box3d_transformer
+      params:
+        hidden_dim: ${model_config.boxer3d.hidden_dim}
+        nhead: 8
+        nlevel: ${model_config.boxer3d.backbone.params.return_layers}
+        enc_layers: 2
+        dec_layers: 2
+        dim_feedforward: 1024
+        dropout: 0
+        num_queries: 300
+        ref_size: ${model_config.boxer3d.ref_size}
+
+optimizer:
+  type: adamw
+  params:
+    lr: 1.0e-3
+    lr_backbone: 1.0e-3
+    use_oss: false
+    weight_decay: 1.0e-4
+    eps: 1.0e-09
+    betas:
+    - 0.9
+    - 0.999
+
+training:
+  batch_size: 16
+  iter_per_update: 1
+  find_unused_parameters: false
+  tensorboard: false
+  evaluation_interval: 1
+  checkpoint_interval: 1
+  log_interval: 200
+  max_norm: 1.0
+  run_type: train_test
+  iou_type: null
