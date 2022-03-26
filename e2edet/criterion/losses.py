@@ -193,11 +193,10 @@ class LabelLoss(BaseLoss):
 
 
 class FocalLabelLoss(BaseLoss):
-    def __init__(self, num_classes, focal_alpha, iter_per_update):
+    def __init__(self, num_classes, focal_alpha):
         defaults = dict(
             num_classes=num_classes,
             focal_alpha=focal_alpha,
-            iter_per_update=iter_per_update,
         )
         super().__init__("focal_label_loss", defaults)
 
@@ -443,12 +442,8 @@ class Boxer2DLoss(BaseLoss):
                 self.boxer2d_losses[loss] = BoxesLoss()
                 self.boxer2d_enc_losses[loss + "_enc"] = BoxesLoss()
             elif loss == "focal_labels":
-                self.boxer2d_losses[loss] = FocalLabelLoss(
-                    num_classes, 0.25, iter_per_update
-                )
-                self.boxer2d_enc_losses[loss + "_enc"] = FocalLabelLoss(
-                    1, 0.25, iter_per_update
-                )
+                self.boxer2d_losses[loss] = FocalLabelLoss(num_classes, 0.25)
+                self.boxer2d_enc_losses[loss + "_enc"] = FocalLabelLoss(1, 0.25)
             elif loss == "masks":
                 self.boxer2d_losses[loss] = MaskLoss(self.mask_size)
             else:
@@ -564,12 +559,8 @@ class Boxer3DLoss(BaseLoss):
                 self.boxer3d_losses[loss] = Boxes3DLoss()
                 self.boxer3d_enc_losses[loss + "_enc"] = Boxes3DLoss()
             elif loss == "focal_labels":
-                self.boxer3d_losses[loss] = FocalLabelLoss(
-                    num_classes, 0.25, iter_per_update
-                )
-                self.boxer3d_enc_losses[loss + "_enc"] = FocalLabelLoss(
-                    1, 0.25, iter_per_update
-                )
+                self.boxer3d_losses[loss] = FocalLabelLoss(num_classes, 0.25)
+                self.boxer3d_enc_losses[loss + "_enc"] = FocalLabelLoss(1, 0.25)
             else:
                 raise ValueError(
                     "Only boxes|focal_labels are supported for boxer3d "
