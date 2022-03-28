@@ -96,7 +96,7 @@ $E2E_DATASETS/
 	└── vocabs/
 		└── coco_categories.txt - the mapping from coco categories to indices.
 ```
-You can download ```coco_categories.txt``` [here](https).
+The ```coco_categories.txt``` can be downloaded [here](https://drive.google.com/file/d/1AcLUxVRzF2m26tNaFrAsnOvX0Z5L9oSz/view?usp=sharing).
 
 For Waymo Detection, please download [Waymo Open dataset](https://waymo.com/intl/en_us/open/) and organize them as following:
 
@@ -120,7 +120,6 @@ $E2E_DATASETS/
 			└── lidars/
 ```
 You can generate data files for our training and evaluation from raw data by running ```create_gt_database.py``` and ```create_imdb``` in ```tools/preprocess```.
-The ```coco_categories.txt``` can be downloaded [here](https://drive.google.com/file/d/1AcLUxVRzF2m26tNaFrAsnOvX0Z5L9oSz/view?usp=sharing).
 
 ### Training
 Our script is able to automatically detect the number of available gpus on a single node.
