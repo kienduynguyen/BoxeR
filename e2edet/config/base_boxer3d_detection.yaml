@@ -140,9 +140,9 @@ model_config:
           - 2
           - 2
           ds_filters:
-          - 128
           - 256
           - 512
+          - 1024
         return_layers: 2
     transformer:
       type: box3d_transformer
