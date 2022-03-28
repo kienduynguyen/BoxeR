@@ -120,6 +120,7 @@ $E2E_DATASETS/
 			└── lidars/
 ```
 You can generate data files for our training and evaluation from raw data by running ```create_gt_database.py``` and ```create_imdb``` in ```tools/preprocess```.
+The ```coco_categories.txt``` can be downloaded [here](https://drive.google.com/file/d/1AcLUxVRzF2m26tNaFrAsnOvX0Z5L9oSz/view?usp=sharing).
 
 ### Training
 Our script is able to automatically detect the number of available gpus on a single node.
