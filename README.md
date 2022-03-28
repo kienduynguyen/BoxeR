@@ -57,7 +57,7 @@ If you find BoxeR useful in your research, please consider citing:
   
 * Other requirements & Compilation
     ```bash
-    pip -m pip install -e 3D-ObjectDect
+    pip -m pip install -e BoxeR
     ```
 
 	You can test the CUDA operators (box and instance attention) by running 
