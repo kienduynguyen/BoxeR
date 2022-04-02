@@ -405,7 +405,7 @@ class BoxTransformerDecoderLayer(nn.Module):
         tgt = tgt + self.dropout1(tgt2)
         tgt = self.norm1(tgt)
 
-        if self.use_mask:
+        if self.use_mask and not self.inferencing:
             tgt2, roi = self.multihead_attn(
                 self.with_pos_embed(tgt, query_pos),
                 memory,
