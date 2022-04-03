@@ -170,7 +170,7 @@ class Box3dTransformerEncoder(nn.Module):
             .class_embed(output_embed)
             .view(b, l, num_references, -1)[..., 0]
         )
-        out_logits.masked_fill(src_mask, -65504.0)
+        out_logits = out_logits.masked_fill(src_mask, -65504.0)
         out_logits = out_logits.view(b, l * num_references)
         _, indexes = torch.topk(out_logits, self.num_queries, dim=1, sorted=False)
 
