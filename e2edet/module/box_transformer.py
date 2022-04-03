@@ -201,7 +201,7 @@ class BoxTransformerEncoder(nn.Module):
             src_mask = ~ref_windows_valid
 
         out_logits = self.detector[0].class_embed(output_embed)[..., 0]
-        out_logits.masked_fill(src_mask, -65504.0)
+        out_logits = out_logits.masked_fill(src_mask, -65504.0)
         _, indexes = torch.topk(out_logits, self.num_queries, dim=1, sorted=False)
 
         indexes = indexes.unsqueeze(-1)

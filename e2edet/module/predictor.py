@@ -112,8 +112,8 @@ class Detector(nn.Module):
                 raise ValueError("ref_windows should be 4 dim")
 
         if x_mask is not None:
-            outputs_class.masked_fill(x_mask.unsqueeze(-1), -65504.0)
-            outputs_coord.masked_fill(x_mask.unsqueeze(-1), -65504.0)
+            outputs_class = outputs_class.masked_fill(x_mask.unsqueeze(-1), -65504.0)
+            outputs_coord = outputs_coord.masked_fill(x_mask.unsqueeze(-1), -65504.0)
         outputs_coord = outputs_coord.sigmoid()
 
         if self.mask_mode != "none":
@@ -165,8 +165,8 @@ class Detector3d(nn.Module):
         outputs_coord = outputs_coord[..., [0, 1, 5, 2, 3, 6, 4]].sigmoid()
 
         if x_mask is not None:
-            outputs_class.masked_fill(x_mask.unsqueeze(-1), -65504.0)
-            outputs_coord.masked_fill(x_mask.unsqueeze(-1), 0)
+            outputs_class = outputs_class.masked_fill(x_mask.unsqueeze(-1), -65504.0)
+            outputs_coord = outputs_coord.masked_fill(x_mask.unsqueeze(-1), 0)
 
         out = {"pred_logits": outputs_class[-1], "pred_boxes": outputs_coord[-1]}
         if self.aux_loss:
@@ -225,8 +225,8 @@ class MultiDetector3d(nn.Module):
                 raise ValueError("ref_windows should be 4 dim")
 
         if x_mask is not None:
-            outputs_class.masked_fill(x_mask.unsqueeze(-1), -65504.0)
-            outputs_coord.masked_fill(x_mask.unsqueeze(-1), -65504.0)
+            outputs_class = outputs_class.masked_fill(x_mask.unsqueeze(-1), -65504.0)
+            outputs_coord = outputs_coord.masked_fill(x_mask.unsqueeze(-1), -65504.0)
         outputs_class = outputs_class.view(nl, b, l * self.num_references, -1)
         outputs_coord = outputs_coord.view(nl, b, l * self.num_references, -1).sigmoid()
 

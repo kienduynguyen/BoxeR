@@ -156,8 +156,8 @@ class BoxeR2D(BaseDetectionModel):
                 src_mask = src_mask & (~ref_windows_valid)
             else:
                 src_mask = ~ref_windows_valid
-            src_embed.masked_fill(src_mask.unsqueeze(-1), 0.0)
-            src_ref_windows.masked_fill(src_mask.unsqueeze(-1), 0.0)
+            src_embed = src_embed.masked_fill(src_mask.unsqueeze(-1), 0.0)
+            src_ref_windows = src_ref_windows.masked_fill(src_mask.unsqueeze(-1), 0.0)
 
             enc_out = self.enc_detector(
                 src_embed[None], src_ref_windows[None], x_mask=src_mask[None]
