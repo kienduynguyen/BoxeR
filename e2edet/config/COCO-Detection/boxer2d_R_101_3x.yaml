@@ -20,4 +20,3 @@ scheduler:
 
 training:
   max_update: 270000
-  batch_size: 2

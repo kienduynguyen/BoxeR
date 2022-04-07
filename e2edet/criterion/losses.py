@@ -194,10 +194,7 @@ class LabelLoss(BaseLoss):
 
 class FocalLabelLoss(BaseLoss):
     def __init__(self, num_classes, focal_alpha):
-        defaults = dict(
-            num_classes=num_classes,
-            focal_alpha=focal_alpha,
-        )
+        defaults = dict(num_classes=num_classes, focal_alpha=focal_alpha,)
         super().__init__("focal_label_loss", defaults)
 
         self.target_classes = None
