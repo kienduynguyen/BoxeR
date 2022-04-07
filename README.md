@@ -38,21 +38,19 @@ If you find BoxeR useful in your research, please consider citing:
 <!-- START TABLE -->
 <!-- TABLE HEADER -->
 <th valign="bottom">Name</th>
-<th valign="bottom">lr<br/>sched</th>
 <th valign="bottom">param<br/>(M)</th>
 <th valign="bottom">infer<br/>time<br/>(fps)</th>
-<th valign="bottom">bbox<br/>AP</th>
-<th valign="bottom">bbox<br/>AP-S</th>
-<th valign="bottom">bbox<br/>AP-M</th>
-<th valign="bottom">bbox<br/>AP-L</th>
+<th valign="bottom">box<br/>AP</th>
+<th valign="bottom">box<br/>AP-S</th>
+<th valign="bottom">box<br/>AP-M</th>
+<th valign="bottom">box<br/>AP-L</th>
 <th valign="bottom">segm<br/>AP</th>
 <th valign="bottom">segm<br/>AP-S</th>
 <th valign="bottom">segm<br/>AP-M</th>
 <th valign="bottom">segm<br/>AP-L</th>
 <!-- TABLE BODY -->
 <!-- ROW: boxer2d_R_50_3x -->
- <tr><td align="left"><a href="configs/COCO-InstanceSegmentation/boxer2d_R_50_3x.yaml"> BoxeR2D-R50</a></td>
-<td align="center">3x</td>
+ <tr><td align="left"><a href="e2edet/configs/COCO-InstanceSegmentation/boxer2d_R_50_3x.yaml"> BoxeR2D-R50</a></td>
 <td align="center">40.1</td>
 <td align="center">12.5</td>
 <td align="center">50.7</td>
@@ -65,8 +63,7 @@ If you find BoxeR useful in your research, please consider citing:
 <td align="center">62.5</td>
 </tr>
 <!-- ROW: boxer2d_R_101_3x -->
- <tr><td align="left"><a href="configs/COCO-Detection/boxer2d_R_101_3x.yaml">BoxeR2D-R101</a></td>
-<td align="center">3x</td>
+ <tr><td align="left"><a href="e2edet/configs/COCO-Detection/boxer2d_R_101_3x.yaml">BoxeR2D-R101</a></td>
 <td align="center">59.0</td>
 <td align="center">10.0</td>
 <td align="center">50.3</td>
@@ -79,8 +76,7 @@ If you find BoxeR useful in your research, please consider citing:
 <td align="center">61.7</td>
 </tr>
 <!-- ROW: boxer2d_R_101_5x_lsj -->
- <tr><td align="left"><a href="configs/COCO-Detection/boxer2d_R_101_5x_lsj.yaml">BoxeR2D-R101</a></td>
-<td align="center">5x</td>
+ <tr><td align="left"><a href="e2edet/configs/COCO-Detection/boxer2d_R_101_5x_lsj.yaml">BoxeR2D-R101</a></td>
 <td align="center">59.0</td>
 <td align="center">10.0</td>
 <td align="center">51.9</td>
