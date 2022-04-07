@@ -32,7 +32,7 @@ If you find BoxeR useful in your research, please consider citing:
 
 ## Main Results
 
-### COCO Instance Segmentation Baselines wuth BoxeR-2D
+### COCO Instance Segmentation Baselines with BoxeR-2D
 
 <table><tbody>
 <!-- START TABLE -->
