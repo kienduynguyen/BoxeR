@@ -30,6 +30,69 @@ If you find BoxeR useful in your research, please consider citing:
 }
 ```
 
+## Main Results
+
+### COCO Instance Segmentation Baselines wuth BoxeR-2D
+
+<table><tbody>
+<!-- START TABLE -->
+<!-- TABLE HEADER -->
+<th valign="bottom">Name</th>
+<th valign="bottom">lr<br/>sched</th>
+<th valign="bottom">param<br/>(M)</th>
+<th valign="bottom">infer<br/>time<br/>(fps)</th>
+<th valign="bottom">bbox<br/>AP</th>
+<th valign="bottom">bbox<br/>AP-S</th>
+<th valign="bottom">bbox<br/>AP-M</th>
+<th valign="bottom">bbox<br/>AP-L</th>
+<th valign="bottom">segm<br/>AP</th>
+<th valign="bottom">segm<br/>AP-S</th>
+<th valign="bottom">segm<br/>AP-M</th>
+<th valign="bottom">segm<br/>AP-L</th>
+<!-- TABLE BODY -->
+<!-- ROW: boxer2d_R_50_3x -->
+ <tr><td align="left"><a href="configs/COCO-InstanceSegmentation/boxer2d_R_50_3x.yaml"> BoxeR2D-R50</a></td>
+<td align="center">3x</td>
+<td align="center">40.1</td>
+<td align="center">12.5</td>
+<td align="center">50.7</td>
+<td align="center">33.4</td>
+<td align="center">53.8</td>
+<td align="center">65.7</td>
+<td align="center">43.3</td>
+<td align="center">23.5</td>
+<td align="center">46.4</td>
+<td align="center">62.5</td>
+</tr>
+<!-- ROW: boxer2d_R_101_3x -->
+ <tr><td align="left"><a href="configs/COCO-Detection/boxer2d_R_101_3x.yaml">BoxeR2D-R101</a></td>
+<td align="center">3x</td>
+<td align="center">59.0</td>
+<td align="center">10.0</td>
+<td align="center">50.3</td>
+<td align="center">33.4</td>
+<td align="center">53.3</td>
+<td align="center">64.4</td>
+<td align="center">42.9</td>
+<td align="center">22.8</td>
+<td align="center">46.1</td>
+<td align="center">61.7</td>
+</tr>
+<!-- ROW: boxer2d_R_101_5x_lsj -->
+ <tr><td align="left"><a href="configs/COCO-Detection/boxer2d_R_101_5x_lsj.yaml">BoxeR2D-R101</a></td>
+<td align="center">5x</td>
+<td align="center">59.0</td>
+<td align="center">10.0</td>
+<td align="center">51.9</td>
+<td align="center">34.2</td>
+<td align="center">55.8</td>
+<td align="center">67.1</td>
+<td align="center">44.3</td>
+<td align="center">24.7</td>
+<td align="center">48.0</td>
+<td align="center">63.8</td>
+</tr>
+</tbody></table>
 
 ## Installation
 
