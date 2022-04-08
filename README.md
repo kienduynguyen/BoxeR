@@ -53,19 +53,6 @@ If you find BoxeR useful in your research, please consider citing:
  <tr><td align="left"><a href="e2edet/config/COCO-InstanceSegmentation/boxer2d_R_50_3x.yaml"> BoxeR-R50-3x</a></td>
 <td align="center">40.1</td>
 <td align="center">12.5</td>
-<td align="center">50.7</td>
-<td align="center">33.4</td>
-<td align="center">53.8</td>
-<td align="center">65.7</td>
-<td align="center">43.3</td>
-<td align="center">23.5</td>
-<td align="center">46.4</td>
-<td align="center">62.5</td>
-</tr>
-<!-- ROW: boxer2d_R_101_3x -->
- <tr><td align="left"><a href="e2edet/config/COCO-InstanceSegmentation/boxer2d_R_101_3x.yaml">BoxeR-R101-3x</a></td>
-<td align="center">59.0</td>
-<td align="center">10.0</td>
 <td align="center">50.3</td>
 <td align="center">33.4</td>
 <td align="center">53.3</td>
@@ -74,6 +61,19 @@ If you find BoxeR useful in your research, please consider citing:
 <td align="center">22.8</td>
 <td align="center">46.1</td>
 <td align="center">61.7</td>
+</tr>
+<!-- ROW: boxer2d_R_101_3x -->
+ <tr><td align="left"><a href="e2edet/config/COCO-InstanceSegmentation/boxer2d_R_101_3x.yaml">BoxeR-R101-3x</a></td>
+<td align="center">59.0</td>
+<td align="center">10.0</td>
+<td align="center">50.7</td>
+<td align="center">33.4</td>
+<td align="center">53.8</td>
+<td align="center">65.7</td>
+<td align="center">43.3</td>
+<td align="center">23.5</td>
+<td align="center">46.4</td>
+<td align="center">62.5</td>
 </tr>
 <!-- ROW: boxer2d_R_101_5x_lsj -->
  <tr><td align="left"><a href="e2edet/config/COCO-InstanceSegmentation/boxer2d_R_101_5x_lsj.yaml">BoxeR-R101-5x</a></td>
