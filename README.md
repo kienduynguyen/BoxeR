@@ -50,7 +50,7 @@ If you find BoxeR useful in your research, please consider citing:
 <th valign="bottom">segm<br/>AP-L</th>
 <!-- TABLE BODY -->
 <!-- ROW: boxer2d_R_50_3x -->
- <tr><td align="left"><a href="e2edet/config/COCO-InstanceSegmentation/boxer2d_R_50_3x.yaml"> BoxeR2D-R50</a></td>
+ <tr><td align="left"><a href="e2edet/config/COCO-InstanceSegmentation/boxer2d_R_50_3x.yaml"> BoxeR2D-R50-3x</a></td>
 <td align="center">40.1</td>
 <td align="center">12.5</td>
 <td align="center">50.7</td>
@@ -63,7 +63,7 @@ If you find BoxeR useful in your research, please consider citing:
 <td align="center">62.5</td>
 </tr>
 <!-- ROW: boxer2d_R_101_3x -->
- <tr><td align="left"><a href="e2edet/config/COCO-Detection/boxer2d_R_101_3x.yaml">BoxeR2D-R101</a></td>
+ <tr><td align="left"><a href="e2edet/config/COCO-InstanceSegmentation/boxer2d_R_101_3x.yaml">BoxeR2D-R101-3x</a></td>
 <td align="center">59.0</td>
 <td align="center">10.0</td>
 <td align="center">50.3</td>
@@ -76,7 +76,7 @@ If you find BoxeR useful in your research, please consider citing:
 <td align="center">61.7</td>
 </tr>
 <!-- ROW: boxer2d_R_101_5x_lsj -->
- <tr><td align="left"><a href="e2edet/config/COCO-Detection/boxer2d_R_101_5x_lsj.yaml">BoxeR2D-R101</a></td>
+ <tr><td align="left"><a href="e2edet/config/COCO-InstanceSegmentation/boxer2d_R_101_5x_lsj.yaml">BoxeR2D-R101-5x</a></td>
 <td align="center">59.0</td>
 <td align="center">10.0</td>
 <td align="center">51.9</td>
