@@ -280,7 +280,7 @@ class WaymoDetection(BaseDataset):
                 topk_indices = torch.masked_select(indices, top_pred[i])
                 scores = torch.masked_select(out_prob[i], top_pred[i])
 
-                labels, bboxes = _process_output(topk_indices[None], out_bbox[i][None])
+                labels, boxes = _process_output(topk_indices[None], out_bbox[i][None])
                 results.append(
                     {"scores": scores[0], "labels": labels[0], "boxes": boxes[0]}
                 )
