@@ -41,7 +41,7 @@ def evaluate(split, trainer):
         model.eval()
         if iou_type is not None:
             coco_evaluator = CocoEvaluator(dataset.coco, iou_type)
-            other_args["return_rles"] = (split == "test")
+            other_args["return_rles"] = split == "test"
 
     prefetcher = Prefetcher(
         trainer.dataloaders[split], trainer.datasets[split], prefetch=True
@@ -237,19 +237,6 @@ def _step(optimizer, max_norm, current_update, trainer):
 
     if torch.isnan(norm).item() or torch.isinf(norm).item():
         return current_update
-
-    if trainer.tb_writer is not None:
-        for i, group_stat in enumerate(optimizer.get_stats()):
-            abs_update = float(group_stat[0])
-            abs_params = float(group_stat[1])
-            up_to_params = abs_update / (abs_params + 1e-06)
-
-            trainer.tb_writer.add_scalars(
-                {"abs_updates/group_{}".format(i): abs_update}, current_update
-            )
-            trainer.tb_writer.add_scalars(
-                {"up_to_params/group_{}".format(i): up_to_params}, current_update,
-            )
     current_update += 1
 
     return current_update
