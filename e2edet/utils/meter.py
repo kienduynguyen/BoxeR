@@ -93,7 +93,7 @@ class Meter:
     def get_scalar_dict(self):
         scalar_dict = {}
         for k, v in self.meters.items():
-            scalar_dict[k] = v.get_latest()
+            scalar_dict[k] = v.avg
 
         return scalar_dict
 
