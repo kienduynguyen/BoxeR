@@ -194,19 +194,19 @@ For example,
 * COCO Detection
 
 ```bash
-python tools/run.py --config e2e/config/COCO-Detection/boxer2d_R_50_3x.yaml --model boxer2d --task detection
+python tools/run.py --config e2edet/config/COCO-Detection/boxer2d_R_50_3x.yaml --model boxer2d --task detection
 ```
 
 * COCO Instance Segmentation
 
 ```bash
-python tools/run.py --config e2e/config/COCO-InstanceSegmentation/boxer2d_R_50_3x.yaml --model boxer2d --task detection
+python tools/run.py --config e2edet/config/COCO-InstanceSegmentation/boxer2d_R_50_3x.yaml --model boxer2d --task detection
 ```
 
 * Waymo Detection,
 
 ```bash
-python tools/run.py --config e2e/config/Waymo-Detection/boxer3d_pointpillar.yaml --model boxer3d --task detection3d
+python tools/run.py --config e2edet/config/Waymo-Detection/boxer3d_pointpillar.yaml --model boxer3d --task detection3d
 ```
 
 #### Some tips to speed-up training
