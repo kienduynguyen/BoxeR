@@ -104,7 +104,7 @@ class Configuration:
             opts = []
 
         if len(opts) == 0:
-            return
+            return config
 
         # Support equal e.g. model=visual_bert for better future hydra support
         has_equal = opts[0].find("=") != -1
@@ -203,7 +203,8 @@ class Configuration:
             self.writer.write(self._convert_node_to_json(dataset_config), "info")
         else:
             self.writer.write(
-                "No dataset named '{}' in config. Skipping".format(task), "warning",
+                "No dataset named '{}' in config. Skipping".format(task),
+                "warning",
             )
 
         self.writer.write("======  Optimizer Attributes  ======", "info")
