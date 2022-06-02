@@ -33,9 +33,7 @@ class CosineAnnealingScheduler(BaseScheduler):
                 * (
                     1
                     + math.cos(
-                        math.pi
-                        * (self.last_iter - self.warmup_iterations)
-                        / (self.T_max - self.warmup_iterations)
+                        math.pi * (self.last_iter - self.warmup_iterations) / self.T_max
                     )
                 )
                 / 2
