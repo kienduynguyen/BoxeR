@@ -18,9 +18,10 @@ This repository is an official implementation of the paper [BoxeR: Box-Attention
 
 This project is released under the [MIT License](./LICENSE).
 
-
 ## Citing BoxeR
+
 If you find BoxeR useful in your research, please consider citing:
+
 ```bibtex
 @article{nguyen2021boxer,
   title={BoxeR: Box-Attention for 2D and 3D Transformers},
@@ -94,43 +95,48 @@ If you find BoxeR useful in your research, please consider citing:
 
 ### Requirements
 
-* Linux, CUDA>=11, GCC>=5.4
-  
-* Python>=3.8
+- Linux, CUDA>=11, GCC>=5.4
+- Python>=3.8
 
-    We recommend you to use Anaconda to create a conda environment:
-    ```bash
-    conda create -n boxer python=3.8
-    ```
-    Then, activate the environment:
-    ```bash
-    conda activate boxer
-    ```
-  
-* PyTorch>=1.10.1, torchvision>=0.11.2 (following instructions [here](https://pytorch.org/))
+  We recommend you to use Anaconda to create a conda environment:
 
-    For example, you could install pytorch and torchvision as following:
-    ```bash
-    conda install pytorch torchvision torchaudio cudatoolkit=11.3 -c pytorch
-    ```
-  
-* Other requirements & Compilation
-    ```bash
-    python -m pip install -e BoxeR
-    ```
+  ```bash
+  conda create -n boxer python=3.8
+  ```
 
-	You can test the CUDA operators (box and instance attention) by running 
-    ```bash
-    python tests/box_attn_test.py
-	python tests/instance_attn_test.py
-    ```
+  Then, activate the environment:
+
+  ```bash
+  conda activate boxer
+  ```
+
+- PyTorch>=1.10.1, torchvision>=0.11.2 (following instructions [here](https://pytorch.org/))
+
+  For example, you could install pytorch and torchvision as following:
+
+  ```bash
+  conda install pytorch torchvision torchaudio cudatoolkit=11.3 -c pytorch
+  ```
+
+- Other requirements & Compilation
+
+  ```bash
+  python -m pip install -e BoxeR
+  ```
+
+  You can test the CUDA operators (box and instance attention) by running
+
+  ```bash
+  python tests/box_attn_test.py
+  python tests/instance_attn_test.py
+  ```
 
 ## Usage
 
 ### Dataset preparation
 
 The datasets are assumed to exist in a directory specified by the environment variable $E2E_DATASETS.
-If the environment variable is not specified, it will be set to be ```.data```.
+If the environment variable is not specified, it will be set to be `.data`.
 Under this directory, detectron2 will look for datasets in the structure described below.
 
 ```
@@ -155,7 +161,8 @@ $E2E_DATASETS/
 	└── vocabs/
 		└── coco_categories.txt - the mapping from coco categories to indices.
 ```
-The ```coco_categories.txt``` can be downloaded [here](https://drive.google.com/file/d/1AcLUxVRzF2m26tNaFrAsnOvX0Z5L9oSz/view?usp=sharing).
+
+The `coco_categories.txt` can be downloaded [here](https://drive.google.com/file/d/1AcLUxVRzF2m26tNaFrAsnOvX0Z5L9oSz/view?usp=sharing).
 
 For Waymo Detection, please download [Waymo Open dataset](https://waymo.com/intl/en_us/open/) and organize them as following:
 
@@ -178,9 +185,11 @@ $E2E_DATASETS/
 			├── annos/
 			└── lidars/
 ```
-You can generate data files for our training and evaluation from raw data by running ```create_gt_database.py``` and ```create_imdb``` in ```tools/preprocess```.
+
+You can generate data files for our training and evaluation from raw data by running `create_gt_database.py` and `create_imdb` in `tools/preprocess`.
 
 ### Training
+
 Our script is able to automatically detect the number of available gpus on a single node.
 It works best with Slurm system when it can auto-detect the number of available gpus along with nodes.
 The command for training BoxeR is simple as following:
@@ -191,38 +200,39 @@ python tools/run.py --config ${CONFIG_PATH} --model ${MODEL_TYPE} --task ${TASK_
 
 For example,
 
-* COCO Detection
+- COCO Detection
 
 ```bash
 python tools/run.py --config e2edet/config/COCO-Detection/boxer2d_R_50_3x.yaml --model boxer2d --task detection
 ```
 
-* COCO Instance Segmentation
+- COCO Instance Segmentation
 
 ```bash
 python tools/run.py --config e2edet/config/COCO-InstanceSegmentation/boxer2d_R_50_3x.yaml --model boxer2d --task detection
 ```
 
-* Waymo Detection,
+- Waymo Detection,
 
 ```bash
 python tools/run.py --config e2edet/config/Waymo-Detection/boxer3d_pointpillar.yaml --model boxer3d --task detection3d
 ```
 
 #### Some tips to speed-up training
-* If your file system is slow to read images but your memory is huge, you may consider enabling 'cache_mode' option to load whole dataset into memory at the beginning of training:
+
+- If your file system is slow to read images but your memory is huge, you may consider enabling 'cache_mode' option to load whole dataset into memory at the beginning of training:
 
 ```bash
 python tools/run.py --config ${CONFIG_PATH} --model ${MODEL_TYPE} --task ${TASK_TYPE} dataset_config.${TASK_TYPE}.cache_mode=True
 ```
 
-* If your GPU memory does not fit the batch size, you may consider to use 'iter_per_update' to perform gradient accumulation:
+- If your GPU memory does not fit the batch size, you may consider to use 'iter_per_update' to perform gradient accumulation:
 
 ```bash
 python tools/run.py --config ${CONFIG_PATH} --model ${MODEL_TYPE} --task ${TASK_TYPE} training.iter_per_update=2
 ```
 
-* Our code also supports mixed precision training. It is recommended to use when you GPUs architecture can perform fast FP16 operations:
+- Our code also supports mixed precision training. It is recommended to use when you GPUs architecture can perform fast FP16 operations:
 
 ```bash
 python tools/run.py --config ${CONFIG_PATH} --model ${MODEL_TYPE} --task ${TASK_TYPE} training.use_fp16=(float16 or bfloat16)
@@ -236,15 +246,14 @@ You can get the config file and pretrained model of BoxeR, then run following co
 python tools/run.py --config ${CONFIG_PATH} --model ${MODEL_TYPE} --task ${TASK_TYPE} training.run_type=(val or test or val_test)
 ```
 
-For Waymo evaluation, you need to additionally run the script ```e2edet/evaluate/waymo_eval.py``` from the root folder to get the final result.
-
+For Waymo evaluation, you need to additionally run the script `e2edet/evaluate/waymo_eval.py` from the root folder to get the final result.
 
 ### Analysis and Visualization
 
-You can get the statistics of BoxeR (fps, flops, \# parameters) by running ```tools/analyze.py``` from the root folder.
+You can get the statistics of BoxeR (fps, flops, \# parameters) by running `tools/analyze.py` from the root folder.
 
 ```bash
 python tools/analyze.py --config-path save/COCO-InstanceSegmentation/boxer2d_R_101_3x.yaml --model-path save/COCO-InstanceSegmentation/boxer2d_final.pth --tasks speed flop parameter
 ```
 
-The notebook for BoxeR-2D visualization is provided in ```tools/visualization/BoxeR_2d_segmentation.ipynb```.
+The notebook for BoxeR-2D visualization is provided in `tools/visualization/BoxeR_2d_segmentation.ipynb`.
