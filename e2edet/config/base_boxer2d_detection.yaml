@@ -4,91 +4,91 @@ dataset_config:
     cache_mode: false
     imdb_files:
       train:
-        anno_file: coco/annotation/instances_train2017.json
-        image_folder: coco/image/train2017
+        anno_file: annotations/instances_train2017.json
+        image_folder: /datasets01/COCO/022719/train2017
       val:
-        anno_file: coco/annotation/instances_val2017.json
-        image_folder: coco/image/val2017
+        anno_file: annotations/instances_val2017.json
+        image_folder: /datasets01/COCO/022719/val2017
       test:
         anno_file: coco/annotation/image_info_test-dev2017.json
-        image_folder: coco/image/test2017
+        image_folder: /datasets01/COCO/022719/test2017
     processors:
       answer_processor:
         type: answer
         params:
-          class_file: coco/vocabs/coco_categories.txt
+          class_file: vocabs/coco_categories.txt
       image_train_processor:
         type: compose
         params:
           preprocessors:
-          - type: random_horizontal_flip
-            params:
-              prob: 0.5
-          - type: random_select
-            params:
-              preprocessors:
-              - type: random_resize
-                params:
-                  max_size: 1333
-                  min_size:
-                  - 480
-                  - 801
-                  - 32
-              - type: compose
-                params:
-                  preprocessors:
-                  - type: random_resize
-                    params:
-                      min_size:
-                      - 400
-                      - 601
-                      - 100
-                  - type: random_size_crop
-                    params:
-                      min_size: 384
-                      max_size: 600
+            - type: random_horizontal_flip
+              params:
+                prob: 0.5
+            - type: random_select
+              params:
+                preprocessors:
                   - type: random_resize
                     params:
                       max_size: 1333
                       min_size:
-                      - 480
-                      - 801
-                      - 32
-              probs:
-              - 0.5
-              - 0.5
-          - type: to_tensor
-            params: {}
-          - type: normalize
-            params:
-              mean:
-              - 0.485
-              - 0.456
-              - 0.406
-              std:
-              - 0.229
-              - 0.224
-              - 0.225
+                        - 480
+                        - 801
+                        - 32
+                  - type: compose
+                    params:
+                      preprocessors:
+                        - type: random_resize
+                          params:
+                            min_size:
+                              - 400
+                              - 601
+                              - 100
+                        - type: random_size_crop
+                          params:
+                            min_size: 384
+                            max_size: 600
+                        - type: random_resize
+                          params:
+                            max_size: 1333
+                            min_size:
+                              - 480
+                              - 801
+                              - 32
+                probs:
+                  - 0.5
+                  - 0.5
+            - type: to_tensor
+              params: {}
+            - type: normalize
+              params:
+                mean:
+                  - 0.485
+                  - 0.456
+                  - 0.406
+                std:
+                  - 0.229
+                  - 0.224
+                  - 0.225
       image_test_processor:
         type: compose
         params:
           preprocessors:
-          - type: random_resize
-            params:
-              max_size: 1333
-              min_size: 800
-          - type: to_tensor
-            params: {}
-          - type: normalize
-            params:
-              mean:
-              - 0.485
-              - 0.456
-              - 0.406
-              std:
-              - 0.229
-              - 0.224
-              - 0.225
+            - type: random_resize
+              params:
+                max_size: 1333
+                min_size: 800
+            - type: to_tensor
+              params: {}
+            - type: normalize
+              params:
+                mean:
+                  - 0.485
+                  - 0.456
+                  - 0.406
+                std:
+                  - 0.229
+                  - 0.224
+                  - 0.225
 
 model_config:
   boxer2d:
@@ -112,8 +112,8 @@ model_config:
             giou_weight: ${model_config.boxer2d.loss.params.giou_loss_coef}
             focal_label: true
     metric:
-    - type: accuracy
-      params: {}
+      - type: accuracy
+        params: {}
     backbone:
       type: resnet50
       params:
@@ -122,9 +122,9 @@ model_config:
         freeze_backbone: null
         position_encoding: fixed_box
         return_interm_layers:
-        - layer2
-        - layer3
-        - layer4
+          - layer2
+          - layer3
+          - layer4
         hidden_dim: ${model_config.boxer2d.hidden_dim}
         ref_size: ${model_config.boxer2d.ref_size}
     transformer:
@@ -140,6 +140,7 @@ model_config:
         num_queries: 300
         use_mask: ${model_config.boxer2d.use_mask}
         ref_size: ${model_config.boxer2d.ref_size}
+        residual_mode: v1
 
 optimizer:
   type: adamw
@@ -150,9 +151,9 @@ optimizer:
     weight_decay: 1.0e-4
     eps: 1.0e-09
     betas:
-    - 0.9
-    - 0.999
-  
+      - 0.9
+      - 0.999
+
 training:
   batch_size: 16
   iter_per_update: 1
@@ -164,4 +165,4 @@ training:
   max_norm: 0.1
   run_type: train_val
   iou_type:
-  - bbox
+    - bbox

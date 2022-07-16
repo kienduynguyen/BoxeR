@@ -27,6 +27,7 @@ class BoxTransformer(nn.Module):
         num_queries=300,
         use_mask=False,
         ref_size=4,
+        residual_mode="v1",
     ):
         super().__init__()
 
@@ -39,7 +40,14 @@ class BoxTransformer(nn.Module):
         )
 
         decoder_layer = BoxTransformerDecoderLayer(
-            d_model, nhead, nlevel, dim_feedforward, dropout, activation, use_mask
+            d_model,
+            nhead,
+            nlevel,
+            dim_feedforward,
+            dropout,
+            activation,
+            use_mask,
+            residual_mode,
         )
 
         self.decoder = BoxTransformerDecoder(
@@ -357,9 +365,18 @@ class BoxTransformerEncoderLayer(nn.Module):
 
 class BoxTransformerDecoderLayer(nn.Module):
     def __init__(
-        self, d_model, nhead, nlevel, dim_feedforward, dropout, activation, use_mask
+        self,
+        d_model,
+        nhead,
+        nlevel,
+        dim_feedforward,
+        dropout,
+        activation,
+        use_mask,
+        residual_mode,
     ):
         super().__init__()
+        assert residual_mode in ("v1", "v2")
 
         self.self_attn = nn.MultiheadAttention(d_model, nhead, dropout=dropout)
         if use_mask:
@@ -380,6 +397,7 @@ class BoxTransformerDecoderLayer(nn.Module):
 
         self.activation = get_activation_fn(activation)
         self.use_mask = use_mask
+        self.residual_mode = residual_mode
 
     @staticmethod
     def with_pos_embed(tensor, pos):
@@ -437,8 +455,11 @@ class BoxTransformerDecoderLayer(nn.Module):
         tgt = tgt + self.dropout3(tgt2)
         tgt = self.norm3(tgt)
         if self.use_mask and not self.inferencing:
-            roi2 = self.linear2(self.dropout(self.activation(self.linear1(roi))))
-            roi = roi + self.dropout3(roi2)
+            if self.residual_mode == "v1":
+                roi2 = self.linear2(self.dropout(self.activation(self.linear1(roi))))
+                roi = roi + self.dropout3(roi2)
+            elif self.residual_mode == "v2":
+                roi = tgt.unsqueeze(-2).unsqueeze(-2) + self.dropout2(roi)
             roi = self.norm3(roi)
 
         return tgt, roi

@@ -400,6 +400,7 @@ def build_transformer(config):
             num_queries=params["num_queries"],
             use_mask=params["use_mask"],
             ref_size=params["ref_size"],
+            residual_mode=params["residual_mode"],
         )
     elif arch == "box3d_transformer":
         return Box3dTransformer(
