@@ -122,14 +122,14 @@ class HungarianMatcher(nn.Module):
                 box_cxcywh_to_xyxy(out_bbox), box_cxcywh_to_xyxy(tgt_bbox)
             )
 
-        # Final cost matrix
-        C = (
-            self.cost_bbox * cost_bbox
-            + self.cost_class * cost_class
-            + self.cost_giou * cost_giou
-        )
-        # [batch_size, num_queries, batch_size * num_target_boxes]
-        C = C.view(bs, num_queries, -1).cpu()
+            # Final cost matrix
+            C = (
+                self.cost_bbox * cost_bbox
+                + self.cost_class * cost_class
+                + self.cost_giou * cost_giou
+            )
+            # [batch_size, num_queries, batch_size * num_target_boxes]
+            C = C.view(bs, num_queries, -1).cpu()
 
         sizes = [len(v["boxes"]) for v in targets]
         indices = [
