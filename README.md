@@ -6,7 +6,7 @@ This repository is an official implementation of the paper [BoxeR: Box-Attention
 
 ## Introduction
 
-**Update.** We add an option that can produce mask during training and inference with less gpu memory. You can simple set this mode on by `model_config.boxer2d.transformer.params.residual_mode=v2`.
+**Update.** We add an option that can produce mask during training and inference with less gpu memory. You can simply set this mode on by `model_config.boxer2d.transformer.params.residual_mode=v2`.
 
 **TL; DR.** BoxeR is a Transformer-based network for end-to-end 2D object detection and instance segmentation, along with 3D object detection. The core of the network is Box-Attention which predicts regions of interest to attend by learning the transformation (translation, scaling, and rotation) from reference windows, yielding competitive performance on several vision tasks.
 

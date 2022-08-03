@@ -4,19 +4,19 @@ dataset_config:
     cache_mode: false
     imdb_files:
       train:
-        anno_file: annotations/instances_train2017.json
-        image_folder: /datasets01/COCO/022719/train2017
+        anno_file: coco/annotation/instances_train2017.json
+        image_folder: coco/image/train2017
       val:
-        anno_file: annotations/instances_val2017.json
-        image_folder: /datasets01/COCO/022719/val2017
+        anno_file: coco/annotation/instances_val2017.json
+        image_folder: coco/image/val2017
       test:
         anno_file: coco/annotation/image_info_test-dev2017.json
-        image_folder: /datasets01/COCO/022719/test2017
+        image_folder: coco/image/test2017
     processors:
       answer_processor:
         type: answer
         params:
-          class_file: vocabs/coco_categories.txt
+          class_file: coco/vocabs/coco_categories.txt
       image_train_processor:
         type: compose
         params:
