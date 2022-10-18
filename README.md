@@ -125,6 +125,11 @@ If you find BoxeR useful in your research, please consider citing:
   ```bash
   python -m pip install -e BoxeR
   ```
+	
+  If you are inside the ```BoxeR``` folder, then run:
+  ```bash
+  python -m pip install -e ./
+  ```
 
   You can test the CUDA operators (box and instance attention) by running
 
