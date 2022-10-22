@@ -204,7 +204,7 @@ class BoxTransformerEncoder(nn.Module):
             (ref_windows[..., :2] > 0.01) & (ref_windows[..., :2] < 0.99)
         ).all(-1)
         if src_mask is not None:
-            src_mask = src_mask & (~ref_windows_valid)
+            src_mask = src_mask | (~ref_windows_valid)
         else:
             src_mask = ~ref_windows_valid
 

@@ -6,7 +6,7 @@ from e2edet.utils.general import inverse_sigmoid
 
 
 class MLP(nn.Module):
-    """ Very simple multi-layer perceptron (also called FFN)"""
+    """Very simple multi-layer perceptron (also called FFN)"""
 
     def __init__(self, input_dim, hidden_dim, output_dim, num_layers):
         super().__init__()
@@ -29,7 +29,8 @@ class SegmentMLP(nn.Module):
         in_dim = [hidden_dim] * (num_layers - 1)
         layers = [
             nn.Sequential(
-                nn.ConvTranspose2d(input_dim, hidden_dim, 2, stride=2), nn.ReLU(),
+                nn.ConvTranspose2d(input_dim, hidden_dim, 2, stride=2),
+                nn.ReLU(),
             )
         ]
 
@@ -210,7 +211,7 @@ class MultiDetector3d(nn.Module):
         if x_mask is None:
             x_mask = ~ref_windows_valid
         else:
-            x_mask = x_mask & (~ref_windows_valid)
+            x_mask = x_mask | (~ref_windows_valid)
 
         outputs_class = self.class_embed(x).view(nl, b, l, self.num_references, -1)
         outputs_coord = self.bbox_embed(x).view(nl, b, l, self.num_references, 7)

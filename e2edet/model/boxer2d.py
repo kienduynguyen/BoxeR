@@ -153,7 +153,7 @@ class BoxeR2D(BaseDetectionModel):
                 (src_ref_windows[..., :2] > 0.01) & (src_ref_windows[..., :2] < 0.99)
             ).all(-1)
             if src_mask is not None:
-                src_mask = src_mask & (~ref_windows_valid)
+                src_mask = src_mask | (~ref_windows_valid)
             else:
                 src_mask = ~ref_windows_valid
             src_embed = src_embed.masked_fill(src_mask.unsqueeze(-1), 0.0)
