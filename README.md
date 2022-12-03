@@ -51,6 +51,7 @@ If you find BoxeR useful in your research, please consider citing:
 <th valign="bottom">segm<br/>AP-S</th>
 <th valign="bottom">segm<br/>AP-M</th>
 <th valign="bottom">segm<br/>AP-L</th>
+<th valign="bottom">model</th>
 <!-- TABLE BODY -->
 <!-- ROW: boxer2d_R_50_3x -->
  <tr><td align="left"><a href="e2edet/config/COCO-InstanceSegmentation/boxer2d_R_50_3x.yaml"> BoxeR-R50-3x</a></td>
@@ -64,6 +65,7 @@ If you find BoxeR useful in your research, please consider citing:
 <td align="center">22.8</td>
 <td align="center">46.1</td>
 <td align="center">61.7</td>
+<td align="center">-</td>
 </tr>
 <!-- ROW: boxer2d_R_101_3x -->
  <tr><td align="left"><a href="e2edet/config/COCO-InstanceSegmentation/boxer2d_R_101_3x.yaml">BoxeR-R101-3x</a></td>
@@ -77,6 +79,7 @@ If you find BoxeR useful in your research, please consider citing:
 <td align="center">23.5</td>
 <td align="center">46.4</td>
 <td align="center">62.5</td>
+<td align="center">-</td>
 </tr>
 <!-- ROW: boxer2d_R_101_5x_lsj -->
  <tr><td align="left"><a href="e2edet/config/COCO-InstanceSegmentation/boxer2d_R_101_5x_lsj.yaml">BoxeR-R101-5x</a></td>
@@ -90,6 +93,21 @@ If you find BoxeR useful in your research, please consider citing:
 <td align="center">24.7</td>
 <td align="center">48.0</td>
 <td align="center">63.8</td>
+<td align="center">-</td>
+</tr>
+<!-- ROW: boxer2d_R_101_5x_lsj_resmode_v2 -->
+ <tr><td align="left"><a href="e2edet/config/COCO-InstanceSegmentation/boxer2d_R_101_5x_lsj_resmode_v2.yaml">BoxeR-R101-5x-resmode-v2</a></td>
+<td align="center">59.0</td>
+<td align="center">10.0</td>
+<td align="center">52.3</td>
+<td align="center">33.9</td>
+<td align="center">55.7</td>
+<td align="center">67.5</td>
+<td align="center">44.8</td>
+<td align="center">23.9</td>
+<td align="center">48.4</td>
+<td align="center">64.3</td>
+<td align="center"><a href="https://amsuni-my.sharepoint.com/:u:/g/personal/d_k_nguyen_uva_nl/Ecq9BY87lY9EnYph67pG1vsBb1kvHtJWbH2WsTooQA7Zsg?e=kvQzJg">link</a></td>
 </tr>
 </tbody></table>
 

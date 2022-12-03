@@ -43,6 +43,9 @@ model_config:
         use_mask: ${model_config.boxer2d.use_mask}
     backbone:
       type: resnet101
+    transformer:
+      params:
+        residual_mode: v2
 
 scheduler:
   type: multi_step
