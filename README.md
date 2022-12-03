@@ -51,7 +51,7 @@ If you find BoxeR useful in your research, please consider citing:
 <th valign="bottom">segm<br/>AP-S</th>
 <th valign="bottom">segm<br/>AP-M</th>
 <th valign="bottom">segm<br/>AP-L</th>
-<th valign="bottom">model</th>
+<th valign="bottom"></th>
 <!-- TABLE BODY -->
 <!-- ROW: boxer2d_R_50_3x -->
  <tr><td align="left"><a href="e2edet/config/COCO-InstanceSegmentation/boxer2d_R_50_3x.yaml"> BoxeR-R50-3x</a></td>
