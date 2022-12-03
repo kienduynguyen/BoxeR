@@ -96,7 +96,7 @@ If you find BoxeR useful in your research, please consider citing:
 <td align="center">-</td>
 </tr>
 <!-- ROW: boxer2d_R_101_5x_lsj_resmode_v2 -->
- <tr><td align="left"><a href="e2edet/config/COCO-InstanceSegmentation/boxer2d_R_101_5x_lsj_resmode_v2.yaml">BoxeR-R101-5x-v2</a></td>
+ <tr><td align="left"><a href="e2edet/config/COCO-InstanceSegmentation/boxer2d_R_101_5x_lsj_resmode_v2.yaml">BoxeR-R101-5x</a><br/>(resmode_v2)</td>
 <td align="center">59.0</td>
 <td align="center">10.0</td>
 <td align="center">52.3</td>
