@@ -107,7 +107,7 @@ If you find BoxeR useful in your research, please consider citing:
 <td align="center">23.9</td>
 <td align="center">48.4</td>
 <td align="center">64.3</td>
-<td align="center"><a href="https://amsuni-my.sharepoint.com/:u:/g/personal/d_k_nguyen_uva_nl/Ecq9BY87lY9EnYph67pG1vsBb1kvHtJWbH2WsTooQA7Zsg?e=kvQzJg">link</a></td>
+<td align="center"><a href="https://drive.google.com/file/d/1cc0Duoftz4Fb0LPqE-ylqwDHy-iA1ShU/view?usp=sharing">link</a></td>
 </tr>
 </tbody></table>
 
