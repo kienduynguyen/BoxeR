@@ -268,7 +268,7 @@ python tools/run.py --config ${CONFIG_PATH} --model ${MODEL_TYPE} --task ${TASK_
 You can get the config file and pretrained model of BoxeR, then run following command to evaluate it on COCO 2017 validation/test set:
 
 ```bash
-python tools/run.py --config ${CONFIG_PATH} --model ${MODEL_TYPE} --task ${TASK_TYPE} training.run_type=(val or test or val_test)
+python tools/run.py --config ${CONFIG_PATH} --model ${MODEL_TYPE} --task ${TASK_TYPE} training.run_type=(val or test or val_test) training.resume=True training.resume_file=<PATH_TO_CKPT>
 ```
 
 For Waymo evaluation, you need to additionally run the script `e2edet/evaluate/waymo_eval.py` from the root folder to get the final result.
