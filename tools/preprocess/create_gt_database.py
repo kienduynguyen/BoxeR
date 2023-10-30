@@ -8,8 +8,8 @@ sys.path.insert(0, os.path.abspath("./"))
 import numpy as np
 from pyquaternion import Quaternion
 
-from detector.utils.det3d import box_ops
-from detector.utils.det3d.general import read_from_file, read_pc_annotations
+from e2edet.utils.det3d import box_ops
+from e2edet.utils.det3d.general import read_from_file, read_pc_annotations
 
 
 def transform_matrix(translation, rotation, inverse=False):
