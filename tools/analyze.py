@@ -75,8 +75,9 @@ def do_speed(config):
         if idx == start_idx:
             timer.reset()
 
-        outputs = model(data[0])
-        results = dataset.format_for_evalai(outputs, data[1])
+        with torch.autocast(device_type="cuda", dtype=torch.float16):
+            outputs = model(data[0])
+            results = dataset.format_for_evalai(outputs, data[1])
 
     current_time = timer.unix_time_since_start()
 
