@@ -4,6 +4,8 @@ By [Duy-Kien Nguyen](https://scholar.google.com/citations?user=welhhBIAAAAJ&hl=e
 
 This repository is an official implementation of the paper [BoxeR: Box-Attention for 2D and 3D Transformers](https://arxiv.org/abs/2111.13087).
 
+Please check out our new plain detector with ViT for improved performance here: [SimPLR: A Simple and Plain Transformer for Efficient Object Detection and Segmentation](https://github.com/kienduynguyen/SimPLR).
+
 ## Introduction
 
 **Update.** We add an option that can produce mask during training and inference with less gpu memory. You can simply set this mode on by `model_config.boxer2d.transformer.params.residual_mode=v2`.
